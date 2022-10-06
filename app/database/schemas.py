@@ -11,7 +11,7 @@ class CommentCreate(CommentBase):
 
 
 class CommentUpdate(CommentBase):
-    id: int
+    pass
 
 
 class Comment(CommentBase):

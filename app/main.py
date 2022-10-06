@@ -29,7 +29,7 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     return crud.create_user(db=db, user=user)
 
 
-@app.put("/users/{id}", response_model=schemas.User)
+@app.patch("/users/{id}", response_model=schemas.User)
 def update_user(id: int, user: schemas.UserUpdate, db: Session = Depends(get_db)):
 
     updated = crud.update_user(db=db, user=user, id=id)
@@ -69,10 +69,10 @@ def create_comment(user_id: int, comment: schemas.CommentCreate, db: Session = D
     return crud.create_comment(db=db, comment=comment, user_id=user_id)
 
 
-@app.put("/comments/{id}", response_model=schemas.Comment)
-def update_comment(id: int, user: schemas.CommentUpdate, db: Session = Depends(get_db)):
+@app.patch("/comments/{id}", response_model=schemas.Comment)
+def update_comment(id: int, comment: schemas.CommentUpdate, db: Session = Depends(get_db)):
 
-    updated = crud.update_comment(db=db, user=user, id=id)
+    updated = crud.update_comment(db=db, comment=comment, id=id)
     if updated is None:
         raise HTTPException(status_code=400, detail="Comment to update not found")
     return updated
